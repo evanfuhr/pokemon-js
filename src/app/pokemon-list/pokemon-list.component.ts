@@ -1,25 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Pokemon} from '../pokemon';
 
 import { PokemonService } from '../pokemon.service';
 
 @Component({
   selector: 'app-pokemon-list',
+  providers: [PokemonService],
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit {
 
-  title = 'app works!';
   pokemons: Pokemon[];
 
   constructor(private pokemonService: PokemonService) { }
 
-  getPokemons(): void {
-    this.pokemonService.getPokemons().then(pokemons => this.pokemons = pokemons);
-  }
-
   ngOnInit(): void {
     this.getPokemons();
+    console.log(JSON.stringify(this.pokemons));
+  }
+
+  private getPokemons(): void {
+    this.pokemonService
+      .GetAll()
+      .subscribe((data: Pokemon[]) => this.pokemons = data,
+        error => console.log(error),
+        () => console.log('Get all Pokemons complete'));
   }
 }

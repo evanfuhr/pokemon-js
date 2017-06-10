@@ -1,7 +1,7 @@
 import {Type} from './type';
 
 export class Pokemon {
-  id: number;
-  name: string;
+  id: string;
+  identifier: string;
   types?: Type[];
 }
