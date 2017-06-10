@@ -11,7 +11,17 @@ const POKEMONS: Pokemon[] = [
   { id: 7, name: 'Squirtle' },
   { id: 8, name: 'Wartortle' },
   { id: 9, name: 'Blastoise' },
-  { id: 10, name: 'Caterpie' }
+  { id: 10, name: 'Caterpie' },
+  { id: 11, name: 'Metapod' },
+  { id: 12, name: 'Butterfree' },
+  { id: 13, name: 'Weedle' },
+  { id: 14, name: 'Kakuna' },
+  { id: 15, name: 'Beedrill' },
+  { id: 16, name: 'Pidgey' },
+  { id: 17, name: 'Pidgeotto' },
+  { id: 18, name: 'Pidgeot' },
+  { id: 19, name: 'Rattata' },
+  { id: 20, name: 'Raticate' }
 ];
 
 @Component({
