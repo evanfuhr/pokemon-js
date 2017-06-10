@@ -1,3 +1,3 @@
 <div class="pokemon-list">
-    <a md-raised-button *ngFor="let pokemon of pokemons" class="pokemon-button md-accent">{{pokemon.name}}</a>
+    <a md-raised-button *ngFor="let pokemon of pokemons" class="pokemon-button md-accent">{{pokemon.name | uppercase}}</a>
 </div>

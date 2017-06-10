@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Pokemon} from '../pokemon';
 
+import { PokemonService } from '../pokemon.service';
+
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
@@ -8,11 +10,16 @@ import {Pokemon} from '../pokemon';
 })
 export class PokemonListComponent implements OnInit {
 
-  @Input() pokemons: Pokemon[];
+  title = 'app works!';
+  pokemons: Pokemon[];
 
-  constructor() { }
+  constructor(private pokemonService: PokemonService) { }
 
-  ngOnInit() {
+  getPokemons(): void {
+    this.pokemonService.getPokemons().then(pokemons => this.pokemons = pokemons);
   }
 
+  ngOnInit(): void {
+    this.getPokemons();
+  }
 }

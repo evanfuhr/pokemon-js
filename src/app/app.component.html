@@ -1,7 +1,10 @@
-<md-toolbar class="md-tall md-accent" color="primary">
+<md-toolbar class="fixed-header" color="primary">
   <h2 class="md-toolbar-tools">
     <span>Pokémon</span>
   </h2>
 </md-toolbar>
 
-<app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
+<md-toolbar class="hidden-header"></md-toolbar>
+
+<a routerLink="/pokemons">{{'Pokémon List' | uppercase}}</a>
+<router-outlet></router-outlet>
