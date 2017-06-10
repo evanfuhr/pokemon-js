@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MdButtonModule } from '@angular/material';
+import {MdButtonModule, MdToolbarModule, MdToolbar} from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -18,7 +18,9 @@ import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MdButtonModule
+    MdButtonModule,
+    MdToolbarModule,
+    MdToolbar
   ],
   providers: [],
   bootstrap: [AppComponent]
