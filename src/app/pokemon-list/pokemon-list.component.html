@@ -1,3 +1,4 @@
 <div class="pokemon-list">
-    <a md-raised-button *ngFor="let pokemon of pokemons" class="pokemon-button md-accent">{{pokemon.identifier | uppercase}}</a>
+  <!--TODO: Need a way to do 2 colors for a single button-->
+    <a md-raised-button *ngFor="let pokemon of pokemons" data-type="{{pokemon.types[0].identifier}}" class="pokemon-button md-accent">{{pokemon.name | uppercase}}</a>
 </div>

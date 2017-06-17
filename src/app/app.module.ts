@@ -9,7 +9,8 @@ import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import {PokemonService} from './pokemon.service';
+import { PokemonService } from './pokemon.service';
+import { TypeService } from './type.service';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import {PokemonService} from './pokemon.service';
     AppComponent,
     PokemonListComponent
   ],
-  providers: [PokemonService],
+  providers: [PokemonService, TypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

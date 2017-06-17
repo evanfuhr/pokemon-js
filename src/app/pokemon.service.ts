@@ -9,11 +9,13 @@ import { Configuration } from './app.constants';
 
 @Injectable()
 export class PokemonService {
+  http: any;
 
   private actionUrl: string;
   private headers: Headers;
 
-  constructor(private _http: Http) {
+  constructor(_http: Http) {
+    this.http = _http;
 
     this.actionUrl = 'http://localhost:3000/' + 'pokemon/';
 
@@ -24,7 +26,7 @@ export class PokemonService {
 
   public GetAll = (): Observable<Pokemon[]> => {
     console.log(this.actionUrl);
-    return this._http.get(this.actionUrl)
+    return this.http.get(this.actionUrl)
       .map((response: Response) => <Pokemon[]>response.json())
       .catch(this.handleError);
   }

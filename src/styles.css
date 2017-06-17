@@ -4,3 +4,75 @@
 body {
   margin: 0;
 }
+
+a[type="bug"] {
+  background-color: #A8B820
+}
+
+a[type="dark"] {
+  background-color: #705848
+}
+
+a[type="dragon"] {
+  background-color: #7038F8
+}
+
+a[type="electric"] {
+  background-color: #F8D030
+}
+
+a[type="fairy"] {
+  background-color: #EE99AC
+}
+
+a[type="fighting"] {
+  background-color: #C03028
+}
+
+a[type="fire"] {
+  background-color: #F08030
+}
+
+a[type="flying"] {
+  background-color: #A890F0;
+}
+
+a[type="ghost"] {
+  background-color: #705898
+}
+
+a[type="grass"] {
+  background-color: #78C850
+}
+
+a[type="ground"] {
+  background-color: #E0C068
+}
+
+a[type="ice"] {
+  background-color: #98D8D8
+}
+
+a[type="normal"] {
+  background-color: #A8A878
+}
+
+a[type="poison"] {
+  background-color: #A040A0
+}
+
+a[type="psychic"] {
+  background-color: #F85888
+}
+
+a[type="rock"] {
+  background-color: #B8A038
+}
+
+a[type="steel"] {
+  background-color: #B8B8D0
+}
+
+a[type="water"] {
+  background-color: #6890F0
+}

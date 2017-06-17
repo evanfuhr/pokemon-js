@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Pokemon} from '../pokemon';
+import { Pokemon } from '../pokemon';
+import { Type } from '../type';
 
 import { PokemonService } from '../pokemon.service';
+import { TypeService } from '../type.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -13,11 +15,10 @@ export class PokemonListComponent implements OnInit {
 
   pokemons: Pokemon[];
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService, private typeService: TypeService) { }
 
   ngOnInit(): void {
     this.getPokemons();
-    console.log(JSON.stringify(this.pokemons));
   }
 
   private getPokemons(): void {
@@ -25,6 +26,6 @@ export class PokemonListComponent implements OnInit {
       .GetAll()
       .subscribe((data: Pokemon[]) => this.pokemons = data,
         error => console.log(error),
-        () => console.log('Get all Pokemons complete'));
+        () => console.log('Get all pokemons complete'));
   }
 }
