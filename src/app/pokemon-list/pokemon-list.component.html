@@ -1,4 +1,8 @@
 <div class="pokemon-list">
-  <!--TODO: Need a way to do 2 colors for a single button-->
-    <a md-raised-button *ngFor="let pokemon of pokemons" data-type="{{pokemon.types[0].identifier}}" class="pokemon-button md-accent">{{pokemon.name | uppercase}}</a>
+  <!--TODO: /Need a way to do 2 colors for a single button-->
+  <ng-container *ngFor="let pokemon of pokemons" [ngSwitch]=pokemon.types.length>
+    <a md-raised-button *ngSwitchCase=1 [ngStyle]="{'background-color':pokemon.types[0].color}" class="pokemon-button md-accent">{{pokemon.name | uppercase}}</a>
+    <a md-raised-button *ngSwitchCase=2 [ngStyle]="{'background':'linear-gradient(to right, ' + pokemon.types[0].color + ',' + pokemon.types[0].color + ',' + pokemon.types[1].color + ',' + pokemon.types[1].color + ')'}" class="pokemon-button md-accent">{{pokemon.name | uppercase}}</a>
+    <a md-raised-button *ngSwitchDefault class="pokemon-button md-accent">{{pokemon.name | uppercase}}</a>
+  </ng-container>
 </div>

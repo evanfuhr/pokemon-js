@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MdButtonModule, MdToolbarModule } from '@angular/material';
+// import { MdButtonModule, MdToolbarModule, MdTabNavBar } from '@angular/material';
+import { MaterialModule } from '@angular/material'
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
@@ -17,8 +18,10 @@ import { TypeService } from './type.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MdButtonModule,
-    MdToolbarModule,
+    // MdButtonModule,
+    // MdToolbarModule,
+    // MdTabNavBar,
+    MaterialModule,
     RouterModule.forRoot([
       {
         path: 'pokemons',
