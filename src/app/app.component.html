@@ -11,11 +11,11 @@
 </md-toolbar>
 
 <nav md-tab-nav-bar>
-  <!--[active]="rla.isActive"-->
   <a md-tab-link
-     *ngFor="let link of navLinks"
-     [routerLink]=link.route
-     routerLinkActive #rla="routerLinkActive">
+     *ngFor="let link of navLinks; let i = index"
+     [routerLink]="link.route"
+     [active]="activeLinkIndex === i"
+     (click)="activeLinkIndex = i">
     {{link.label}}
   </a>
 </nav>

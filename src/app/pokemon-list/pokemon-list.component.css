@@ -1,11 +1,12 @@
 div.pokemon-list {
   padding-left: 1em;
   padding-right: 1em;
-  min-width: 60%;
 }
 
 a.pokemon-button {
   display: block;
-  margin-top: .5em;
-  margin-bottom: .5em;
+  margin: .5em auto;
+  width: auto;
+  max-width: 600px;
+  alignment: center;
 }

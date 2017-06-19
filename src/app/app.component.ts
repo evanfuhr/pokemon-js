@@ -10,5 +10,14 @@ import { PokemonService } from './pokemon.service';
 })
 export class AppComponent {
   title = 'app works!';
-  navLinks = [{label: 'POKÉMON', route: '/pokemons'}];
+  navLinks = [
+    {
+      label: 'POKÉMON',
+      route: '/pokemons'
+    },
+    {
+      label: 'MOVES',
+      route: '/moves'
+    }
+  ];
 }
