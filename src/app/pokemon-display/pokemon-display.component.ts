@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Pokemon } from '../pokemon';
@@ -13,8 +13,7 @@ import { PokemonService } from '../pokemon.service';
 export class PokemonDisplayComponent implements OnInit {
   pokemon: Pokemon;
   pokemonID: string;
-  spriteName = '../../assets/sprites/';
-  spritePath: string;
+  spritePath = '/assets/sprites/';
 
   constructor(
     private pokemonService: PokemonService,
@@ -27,14 +26,14 @@ export class PokemonDisplayComponent implements OnInit {
       this.pokemonID = params['id']
     );
 
-    this.spriteName = this.spriteName + '.gif';
-    if ( parseInt(this.pokemonID, 1) < 100 ) {
-      if ( parseInt(this.pokemonID, 1) < 10 ) {
-        this.spriteName = '0' + this.spriteName;
+    let spriteName = this.pokemonID + '.gif';
+    if ( parseInt(this.pokemonID, 10) < 100 ) {
+      if ( parseInt(this.pokemonID, 10) < 10 ) {
+        spriteName = '0' + spriteName;
       }
-      this.spriteName = '0' + this.spriteName;
+      spriteName = '0' + spriteName;
     }
-    this.spriteName = 'sprite' + this.spriteName;
+    this.spritePath = this.spritePath + 'sprite' + spriteName;
   }
 
   goBack(): void {
