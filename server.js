@@ -1,12 +1,15 @@
+
 let _ = require('lodash');
 let async = require('async');
-let bodyParser = require('body-parser');
-let cors = require('cors');
+
+// Express
 let express = require('express');
+let app = express();
+let port = process.env.Port || 3000;
+
+// DB
 let sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('./src/assets/pokemon.db');
-let port = process.env.Port || 8000;
-
 let knex = require('knex')({
   client: 'sqlite3',
   connection: {
@@ -14,18 +17,32 @@ let knex = require('knex')({
   }
 });
 
-let app = express();
+// Middlewares
+let bodyParser = require('body-parser');
+let cors = require('cors');
 
-app.use(express.static('src'));
+app.use(express.static('dist'));
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+// Routes
+let pokemon = require('./routes/pokemon.route');
+
+app.use('/api/pokemon', pokemon);
 
 app.get('/*', (req, res)=>{
-  res.sendFile(path.join(__dirname + '/src/index.html'))
-})
+  res.sendFile(path.join(__dirname + '/dist/index.html'))
+});
 
 app.listen(port, function() {
   console.log('Listening on: ', port);
 });
+
+module.exports = app;

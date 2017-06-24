@@ -17,7 +17,7 @@ export class PokemonService {
   constructor(_http: Http) {
     this.http = _http;
 
-    this.actionUrl = 'http://localhost:3000/' + 'pokemon/';
+    this.actionUrl = 'http://localhost:3000/api/' + 'pokemon/';
 
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
