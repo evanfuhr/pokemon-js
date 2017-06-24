@@ -4,8 +4,6 @@ import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Pokemon } from './pokemon';
-import { POKEMONS } from './mock-pokemons';
-import { Configuration } from './app.constants';
 
 @Injectable()
 export class PokemonService {
@@ -17,7 +15,7 @@ export class PokemonService {
   constructor(_http: Http) {
     this.http = _http;
 
-    this.actionUrl = 'http://localhost:3000/api/' + 'pokemon/';
+    this.actionUrl = 'http://localhost:3000/api/pokemon/';
 
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
@@ -29,10 +27,6 @@ export class PokemonService {
     return this.http.get(this.actionUrl)
       .map((response: Response) => <Pokemon[]>response.json())
       .catch(this.handleError);
-  }
-
-  getPokemons(): Promise<Pokemon[]> {
-    return Promise.resolve(POKEMONS);
   }
 
   private handleError(error: Response) {

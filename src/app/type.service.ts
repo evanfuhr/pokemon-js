@@ -4,7 +4,6 @@ import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Type } from './type';
-import { Configuration } from './app.constants';
 
 @Injectable()
 export class TypeService {
@@ -14,7 +13,7 @@ export class TypeService {
 
   constructor(private _http: Http) {
 
-    this.actionUrl = 'http://localhost:3000/';
+    this.actionUrl = 'http://localhost:3000/api/';
 
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
@@ -28,7 +27,7 @@ export class TypeService {
   }
 
   public GetAllForPokemon = (pokemonID: string): Observable<Type[]> => {
-    return this._http.get(this.actionUrl + 'pokemon/' + pokemonID + '/types')
+    return this._http.get(this.actionUrl + 'pokemon/' + pokemonID + '/type')
       .map((response: Response) => <Type[]>response.json())
       .catch(this.handleError);
   }

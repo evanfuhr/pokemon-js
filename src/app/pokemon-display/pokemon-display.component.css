@@ -1,0 +1,8 @@
+.sprite {
+  display: block;
+  padding: .5em;
+  margin: .5em auto;
+  width: auto;
+  max-width: 600px;
+  alignment: center;
+}

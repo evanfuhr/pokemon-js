@@ -34,11 +34,13 @@ app.use(function(req, res, next) {
 
 // Routes
 let pokemon = require('./routes/pokemon.route');
+let type = require('./routes/type.route');
 
 app.use('/api/pokemon', pokemon);
+app.use('/api/pokemon/:pokemon_id/type', type);
 
 app.get('/*', (req, res)=>{
-  res.sendFile(path.join(__dirname + '/dist/index.html'))
+  res.sendFile(path.join(__dirname + './dist/index.html'))
 });
 
 app.listen(port, function() {

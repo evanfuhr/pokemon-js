@@ -1,4 +1,11 @@
-<p>
-  pokemon-display works!
-</p>
-<img [src]="spritePath" >
+<ng-container [ngSwitch]=types.length>
+  <div class="pokemon-display" [ngStyle]="{'background-color':types[0].color}" *ngSwitchCase=1>
+    <img class="sprite" [src]="spritePath" >
+  </div>
+  <div class="pokemon-display" [ngStyle]="{'background':'linear-gradient(to right, ' + types[0].color + ',' + types[0].color + ',' + types[1].color + ',' + types[1].color + ')'}" *ngSwitchCase=2>
+    <img class="sprite" [src]="spritePath" >
+  </div>
+  <div class="pokemon-display" *ngSwitchDefault>
+    <img class="sprite" [src]="spritePath" >
+  </div>
+</ng-container>
