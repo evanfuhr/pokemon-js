@@ -1,0 +1,18 @@
+.card {
+    background-color: #f7f7f7;
+    margin: 16px 16px;
+}
+
+.sprite {
+  display: block;
+  padding: .5em;
+  margin: 0 auto;
+  width: auto;
+  max-width: 600px;
+  alignment: center;
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+}

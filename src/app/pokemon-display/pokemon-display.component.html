@@ -1,11 +1,15 @@
+<ng-template #pokemonDisplay>
+  <pokemon-detail [pokemon] = "pokemon" [spritePath]="spritePath"></pokemon-detail>
+</ng-template>
+
 <ng-container [ngSwitch]=types.length>
   <div class="pokemon-display" [ngStyle]="{'background-color':types[0].color}" *ngSwitchCase=1>
-    <img class="sprite" [src]="spritePath" >
+    <ng-container *ngTemplateOutlet="pokemonDisplay"></ng-container>
   </div>
   <div class="pokemon-display" [ngStyle]="{'background':'linear-gradient(to right, ' + types[0].color + ',' + types[0].color + ',' + types[1].color + ',' + types[1].color + ')'}" *ngSwitchCase=2>
-    <img class="sprite" [src]="spritePath" >
+    <ng-container *ngTemplateOutlet="pokemonDisplay"></ng-container>
   </div>
   <div class="pokemon-display" *ngSwitchDefault>
-    <img class="sprite" [src]="spritePath" >
+    <ng-container *ngTemplateOutlet="pokemonDisplay"></ng-container>
   </div>
 </ng-container>

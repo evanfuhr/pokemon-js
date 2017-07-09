@@ -5,9 +5,12 @@ import { Location } from '@angular/common';
 import { Pokemon } from '../pokemon';
 import { Type } from '../type';
 import { TypeService } from '../type.service';
+import { PokemonService } from '../pokemon.service';
+
+import { PokemonDetailComponent } from '../pokemon-detail/pokemon-detail.component';
 
 @Component({
-  selector: 'app-pokemon-display',
+  selector: 'pokemon-display',
   templateUrl: './pokemon-display.component.html',
   styleUrls: ['./pokemon-display.component.css']
 })
@@ -19,6 +22,7 @@ export class PokemonDisplayComponent implements OnInit {
 
   constructor(
     private typeService: TypeService,
+    private pokemonService: PokemonService,
     private route: ActivatedRoute,
     private location: Location
   ) { }
@@ -29,6 +33,7 @@ export class PokemonDisplayComponent implements OnInit {
     );
 
     this.getTypes(this.pokemonID);
+    this.getPokemonData(this.pokemonID);
 
     let spriteName = this.pokemonID + '.gif';
     if ( parseInt(this.pokemonID, 10) < 100 ) {
@@ -46,6 +51,14 @@ export class PokemonDisplayComponent implements OnInit {
       .subscribe((data: Type[]) => this.types = data,
         error => console.log(error),
         () => console.log('Types set.'));
+  }
+
+  private getPokemonData(pokemonID): void {
+    this.pokemonService
+      .GetSingle(pokemonID)
+      .subscribe((data: Pokemon) => this.pokemon = data,
+        error => console.log(error),
+        () => console.log('Pokemon data set.'));
   }
 
   goBack(): void {

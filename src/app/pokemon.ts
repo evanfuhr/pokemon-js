@@ -3,6 +3,7 @@ import {Ability} from './ability';
 
 export class Pokemon {
   abilities?: Ability[];
+  flavorText?: string;
   height?: string;
   id: any;
   name?: string;

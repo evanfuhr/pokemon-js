@@ -4,7 +4,8 @@ let router = express.Router();
 let knex = require('knex')({
   client: 'sqlite3',
   connection: {
-    filename: "./dist/assets/pokemon.db"
+    // filename: "./dist/assets/pokemon.db" // Single app
+    filename: "./src/assets/pokemon.db" // Separate FE and BE app
   }
 });
 
@@ -34,7 +35,7 @@ router.get('/', (req, res, next)=>{
       function parseData(callback) {
         var pokemon;
         for (var i = 0; i < pokemons.length; i++) {
-          //Currently breaks if last pokemon is not dual typed
+          // Currently breaks if last pokemon is not dual typed
           if ( pokemons[i].id === pokemons[i+1].id ) {
             pokemon = {
               id: pokemons[i].id,
@@ -89,6 +90,7 @@ router.get('/:id', function(req, res) {
   var pokemon;
   var languageID = 9; // English
   var versionID = 26; // ORAS
+  let result;
 
   async.series(
     [
@@ -98,7 +100,7 @@ router.get('/:id', function(req, res) {
           .join('pokemon_abilities', 'pokemon_species.id', 'pokemon_abilities.pokemon_id')
           .join('ability_names', 'pokemon_abilities.ability_id', 'ability_names.ability_id')
           .join('pokemon_species_flavor_text', 'pokemon_species.id', 'pokemon_species_flavor_text.species_id')
-          .select('pokemon_species.id', 'pokemon_species_names.name', 'pokemon.height', 'pokemon.weight', 'pokemon_species_flavor_text.flavor_text', 'pokemon_abilities.slot', 'ability_names.name', 'pokemon_abilities.ability_id', 'pokemon_abilities.is_hidden')
+          .select('pokemon_species.id', 'pokemon_species_names.name', 'pokemon.height', 'pokemon.weight', 'pokemon_species_flavor_text.flavor_text', 'pokemon_abilities.slot', 'ability_names.name as ability_name', 'pokemon_abilities.ability_id', 'pokemon_abilities.is_hidden')
           .from('pokemon_species')
           .where('pokemon_species.id', req.params.id)
           .andWhere('pokemon_species_flavor_text.version_id', versionID)
@@ -106,6 +108,7 @@ router.get('/:id', function(req, res) {
           .andWhere('ability_names.local_language_id', languageID)
           .andWhere('pokemon_species_flavor_text.language_id', languageID)
           .andWhere('pokemon.is_default', '1') // Gets default form
+          .orderBy('pokemon_abilities.slot', 'asc')
           .then(function (rawPokemon) {
             return rawPokemon;
           }).then(function (rawPokemon) {
@@ -113,9 +116,31 @@ router.get('/:id', function(req, res) {
           callback();
         });
       },
+      function parseData(callback) {
+        let pokeAbilities = [];
+        let ability;
+        for (var i = 0; i < pokemon.length; i++) {
+          ability = {
+            slot: pokemon[i].slot,
+            id: pokemon[i].ability_id,
+            isHidden: pokemon[i].is_hidden,
+            name: pokemon[i].ability_name
+          }
+          pokeAbilities.push(ability)
+        }
+        result = {
+          id: pokemon[0].id,
+          name: pokemon[0].name,
+          height: pokemon[0].height.substring(0, pokemon[0].height.length-1) + "." + pokemon[0].height.substring(pokemon[0].height.length-1) + " m",
+          weight: pokemon[0].weight.substring(0, pokemon[0].weight.length-1) + "." + pokemon[0].weight.substring(pokemon[0].weight.length-1) + " kg",
+          flavorText: pokemon[0].flavor_text,
+          abilities: pokeAbilities
+        }
+        callback();
+      },
       function returnData(callback) {
         console.log('Returned /pokemon/' + req.params.id + ' response');
-        res.json(pokemon);
+        res.json(result);
         callback();
       }
     ]

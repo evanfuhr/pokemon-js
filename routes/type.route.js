@@ -6,7 +6,8 @@ let router = express.Router({
 let knex = require('knex')({
   client: 'sqlite3',
   connection: {
-    filename: "./dist/assets/pokemon.db"
+    // filename: "./dist/assets/pokemon.db" // Single app
+    filename: "./src/assets/pokemon.db" // Separate FE and BE app
   }
 });
 

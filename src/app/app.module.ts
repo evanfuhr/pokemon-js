@@ -14,6 +14,7 @@ import { PokemonService } from './pokemon.service';
 import { TypeService } from './type.service';
 import { PokemonDisplayComponent } from './pokemon-display/pokemon-display.component';
 import { MovesListComponent } from './moves-list/moves-list.component';
+import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { MovesListComponent } from './moves-list/moves-list.component';
     AppComponent,
     PokemonListComponent,
     PokemonDisplayComponent,
-    MovesListComponent
+    MovesListComponent,
+    PokemonDetailComponent
   ],
   providers: [PokemonService, TypeService],
   bootstrap: [AppComponent]

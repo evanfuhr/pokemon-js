@@ -1,0 +1,17 @@
+<br>
+<div class="card">
+  <img class="sprite" [src]="spritePath" >
+  <table>
+    <tr>
+      <td>Height</td>
+      <td>{{ pokemon.height }}</td>
+      <td>Weight</td>
+      <td>{{ pokemon.weight }}</td>
+    </tr>
+    <tr>
+      <td colspan="2">Abilities</td>
+      <td colspan="2">
+        <tr *ngFor="let ability of pokemon.abilities">{{ ability.name }}</tr>
+      </td>
+  </table>
+</div>

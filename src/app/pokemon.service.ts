@@ -24,8 +24,14 @@ export class PokemonService {
 
   public GetAll = (): Observable<Pokemon[]> => {
     console.log(this.actionUrl);
-    return this.http.get(this.actionUrl)
+    return this.http.get(this.actionUrl, { cache: true })
       .map((response: Response) => <Pokemon[]>response.json())
+      .catch(this.handleError);
+  }
+
+  public GetSingle = (id: string): Observable<Pokemon> => {
+    return this.http.get(this.actionUrl + id, { cache: true })
+      .map((response: Response) => <Pokemon>response.json())
       .catch(this.handleError);
   }
 

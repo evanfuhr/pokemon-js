@@ -11,7 +11,7 @@ export class TypeService {
   private actionUrl: string;
   private headers: Headers;
 
-  constructor(private _http: Http) {
+  constructor(private http: Http) {
 
     this.actionUrl = 'http://localhost:3000/api/';
 
@@ -21,19 +21,19 @@ export class TypeService {
   }
 
   public GetAll = (): Observable<Type[]> => {
-    return this._http.get(this.actionUrl + 'types/')
+    return this.http.get(this.actionUrl + 'types/')
       .map((response: Response) => <Type[]>response.json())
       .catch(this.handleError);
   }
 
   public GetAllForPokemon = (pokemonID: string): Observable<Type[]> => {
-    return this._http.get(this.actionUrl + 'pokemon/' + pokemonID + '/type')
+    return this.http.get(this.actionUrl + 'pokemon/' + pokemonID + '/type')
       .map((response: Response) => <Type[]>response.json())
       .catch(this.handleError);
   }
 
   public GetSingle = (id: string): Observable<Type> => {
-    return this._http.get(this.actionUrl + 'types/' + id)
+    return this.http.get(this.actionUrl + 'types/' + id)
       .map((response: Response) => <Type>response.json())
       .catch(this.handleError);
   }
